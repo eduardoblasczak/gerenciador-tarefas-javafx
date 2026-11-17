@@ -60,6 +60,8 @@ public class GerenciadorDeTarefas {
         return tarefas.values().stream()
                 .filter(t -> prioridade == null || t.prioridade() == prioridade)
                 .filter(t -> status == null || t.status() == status)
+                .filter(t -> t.titulo().toLowerCase(Locale.ROOT).contains(termo))
+                .sorted(Comparator.comparing(Tarefa::prioridade).thenComparingLong(Tarefa::id))
                 .toList();
     }
     private void atualizar(Tarefa t, Status status, Prioridade prioridade, LocalDate prazo) {

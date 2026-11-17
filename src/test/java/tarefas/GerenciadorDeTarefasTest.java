@@ -76,6 +76,12 @@ class GerenciadorDeTarefasTest {
         long id = criar("Boleto").id(); g.excluir(id); assertTrue(g.listar().isEmpty());
         erro("Tarefa não encontrada", () -> g.obter(id));
     }
+    @Test void operacoesComIdInexistenteInformamErro() {
+        List<Runnable> operacoes = List.of(() -> g.obter(99), () -> g.excluir(99),
+                () -> g.concluir(99), () -> g.reabrir(99), () -> g.definirPrioridade(99, Prioridade.ALTA),
+                () -> g.definirPrazo(99, hoje, hoje), () -> g.editar(99,"Título","",null,null,hoje));
+        operacoes.forEach(op -> erro("Tarefa não encontrada", op));
+    }
     @Test void alteraPrioridade() {
         long id = criar("Ler").id(); g.definirPrioridade(id, Prioridade.ALTA);
         assertEquals(Prioridade.ALTA, g.obter(id).prioridade());
@@ -111,11 +117,26 @@ class GerenciadorDeTarefasTest {
         assertFalse(criar("Sem prazo").atrasada(hoje.plusYears(1)));
     }
     @Test void filtraPrioridadeStatusEBuscaEmConjunto() {
-        Tarefa alta = g.criar("Estudar Java", "", Prioridade.ALTA, null, hoje);
-        long baixa = g.criar("Ir ao mercado", "", Prioridade.BAIXA, null, hoje).id();
-        criar("Fazer slides"); g.concluir(baixa);
+        long java = g.criar("Estudar Java", "", Prioridade.ALTA, null, hoje).id();
+        long mercado = g.criar("Ir ao mercado", "", Prioridade.BAIXA, null, hoje).id();
+        criar("Estudar Gherkin"); g.concluir(mercado);
         assertEquals(2, g.consultar(null, Status.PENDENTE, "").size());
-        assertEquals(List.of(alta), g.consultar(Prioridade.ALTA, Status.PENDENTE, ""));
-        assertEquals(3, g.consultar(null, null, "").size());
+        assertEquals(List.of(g.obter(java)), g.consultar(Prioridade.ALTA, Status.PENDENTE, "ESTUDAR"));
+        assertEquals(2, g.consultar(null, null, "  estudar  ").size());
+        assertTrue(g.consultar(null, null, "academia").isEmpty());
+        assertEquals(3, g.consultar(null, null, null).size());
+    }
+    @Test void ordenaPorPrioridadeEId() {
+        Tarefa baixa = g.criar("Baixa", "", Prioridade.BAIXA, null, hoje);
+        Tarefa media = criar("Média");
+        Tarefa alta = g.criar("Alta", "", Prioridade.ALTA, null, hoje);
+        Tarefa alta2 = g.criar("Alta 2", "", Prioridade.ALTA, null, hoje);
+        assertEquals(List.of(alta, alta2, media, baixa), g.consultar(null, null, ""));
+    }
+    @Test void listasRetornadasNaoPermitemMudarEstadoInterno() {
+        criar("Teste");
+        assertThrows(UnsupportedOperationException.class, () -> g.listar().clear());
+        assertThrows(UnsupportedOperationException.class, () -> g.consultar(null,null,"").clear());
+        assertEquals(1, g.listar().size());
     }
 }
