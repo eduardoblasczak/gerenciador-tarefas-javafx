@@ -55,7 +55,13 @@ public class GerenciadorDeTarefas {
         atualizar(t, t.status(), t.prioridade(), prazo);
     }
     public List<Tarefa> listar() { return List.copyOf(tarefas.values()); }
-    public List<Tarefa> consultar(Prioridade prioridade, Status status, String busca) { throw new UnsupportedOperationException("Funcionalidade ainda não integrada"); }
+    public List<Tarefa> consultar(Prioridade prioridade, Status status, String busca) {
+        String termo = busca == null ? "" : busca.strip().toLowerCase(Locale.ROOT);
+        return tarefas.values().stream()
+                .filter(t -> prioridade == null || t.prioridade() == prioridade)
+                .filter(t -> status == null || t.status() == status)
+                .toList();
+    }
     private void atualizar(Tarefa t, Status status, Prioridade prioridade, LocalDate prazo) {
         tarefas.put(t.id(), new Tarefa(t.id(), t.titulo(), t.descricao(), status, prioridade, prazo));
     }

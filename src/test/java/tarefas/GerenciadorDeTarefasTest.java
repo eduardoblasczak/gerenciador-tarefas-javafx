@@ -110,4 +110,12 @@ class GerenciadorDeTarefasTest {
         g.reabrir(t.id()); assertTrue(g.obter(t.id()).atrasada(hoje.plusDays(1)));
         assertFalse(criar("Sem prazo").atrasada(hoje.plusYears(1)));
     }
+    @Test void filtraPrioridadeStatusEBuscaEmConjunto() {
+        Tarefa alta = g.criar("Estudar Java", "", Prioridade.ALTA, null, hoje);
+        long baixa = g.criar("Ir ao mercado", "", Prioridade.BAIXA, null, hoje).id();
+        criar("Fazer slides"); g.concluir(baixa);
+        assertEquals(2, g.consultar(null, Status.PENDENTE, "").size());
+        assertEquals(List.of(alta), g.consultar(Prioridade.ALTA, Status.PENDENTE, ""));
+        assertEquals(3, g.consultar(null, null, "").size());
+    }
 }
