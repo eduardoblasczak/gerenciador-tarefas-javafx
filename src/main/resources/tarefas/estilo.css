@@ -1,0 +1,48 @@
+.root { -fx-font-family: "Segoe UI"; -fx-font-size: 13px; -fx-text-fill: #1e293b; }
+.app { -fx-background-color: #f3f5fa; }
+.lateral { -fx-background-color: #15243b; -fx-padding: 34 20 28 20; }
+.marca { -fx-text-fill: #ffffff; -fx-font-size: 37px; -fx-font-weight: bold; }
+.lateral-texto { -fx-text-fill: #aebbd0; -fx-font-size: 12px; -fx-line-spacing: 4; }
+.lateral-secao { -fx-text-fill: #9baec8; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 35 0 0 0; }
+.lateral-dica { -fx-text-fill: #e0e7f1; -fx-font-weight: bold; }
+.nav-ativo { -fx-background-color: #304565; -fx-text-fill: white; -fx-alignment: center-left; -fx-padding: 12 14; -fx-background-radius: 8; -fx-font-weight: bold; }
+.sobretitulo { -fx-text-fill: #546bd6; -fx-font-size: 10px; -fx-font-weight: bold; }
+.heading { -fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #17243b; }
+.texto-suave { -fx-text-fill: #5d6c82; -fx-font-size: 12px; }
+.data-atual { -fx-background-color: white; -fx-background-radius: 8; -fx-padding: 10 14; -fx-text-fill: #52617a; }
+.indicador { -fx-background-color: white; -fx-background-radius: 12; -fx-padding: 16 20; -fx-border-color: #e4e9f2; -fx-border-radius: 12; }
+.indicador-titulo { -fx-font-size: 10px; -fx-text-fill: #66758a; -fx-font-weight: bold; }
+.numero { -fx-font-size: 29px; -fx-font-weight: bold; }
+.numero-padrao { -fx-text-fill: #17243b; } .numero-azul { -fx-text-fill: #5269da; }
+.numero-verde { -fx-text-fill: #188667; } .numero-vermelho { -fx-text-fill: #c55654; }
+.painel { -fx-padding: 20; -fx-background-color: white; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #e4e9f2; }
+.titulo-secao { -fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #17243b; }
+.campo-label { -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #4b5a70; }
+.text-field, .text-area, .combo-box, .date-picker { -fx-background-color: #f8f9fc; -fx-border-color: #dce2ee; -fx-border-radius: 6; -fx-background-radius: 6; }
+.text-field { -fx-padding: 9 10; } .text-area .content { -fx-background-color: #f8f9fc; }
+.combo-box { -fx-padding: 4 3; } .date-picker .text-field { -fx-border-width: 0; }
+.text-field:focused, .text-area:focused, .combo-box:focused { -fx-border-color: #586fdf; }
+.button { -fx-cursor: hand; -fx-padding: 10 13; -fx-background-radius: 6; -fx-font-weight: bold; }
+.button:disabled { -fx-opacity: 0.45; }
+.botao-primario { -fx-background-color: #5267d7; -fx-text-fill: white; }
+.botao-primario:hover { -fx-background-color: #4055c4; }
+.botao-suave { -fx-background-color: #edf0f7; -fx-text-fill: #415474; }
+.botao-suave:hover { -fx-background-color: #e0e6f2; }
+.botao-perigo { -fx-background-color: #fff0ef; -fx-text-fill: #b64240; }
+.botao-perigo:hover { -fx-background-color: #fddfdc; }
+.table-view { -fx-background-color: transparent; -fx-border-color: #edf0f6; -fx-border-radius: 6; -fx-padding: 0; }
+.table-view .column-header-background, .table-view .column-header, .table-view .filler { -fx-background-color: #f7f8fc; }
+.table-view .column-header { -fx-size: 38; -fx-border-width: 0; }
+.table-view .column-header .label { -fx-font-size: 10px; -fx-text-fill: #68768c; -fx-alignment: center-left; -fx-padding: 0 10; }
+.table-row-cell { -fx-background-color: white; -fx-cell-size: 52; -fx-border-color: transparent transparent #edf0f6 transparent; }
+.table-cell { -fx-alignment: center-left; -fx-padding: 10; -fx-border-width: 0; -fx-text-fill: #263650; }
+.table-row-cell:concluida .table-cell { -fx-text-fill: #648071; }
+.table-row-cell:atrasada { -fx-background-color: #fff8f5; }
+.table-row-cell:selected { -fx-background-color: #eaf0ff; }
+.table-row-cell:selected .table-cell { -fx-text-fill: #30499b; }
+.table-row-cell:empty { -fx-background-color: white; -fx-border-width: 0; }
+.vazio-titulo { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #7b88a0; }
+.mensagem { -fx-text-fill: #28765b; -fx-font-size: 12px; -fx-padding: 6 2; }
+.mensagem:erro { -fx-text-fill: #b64240; }
+.editor-rolavel, .editor-rolavel > .viewport { -fx-background-color: transparent; }
+.editor-rolavel { -fx-padding: 0; -fx-background-insets: 0; }
